@@ -31,7 +31,7 @@ function setup() {
 	engine = Engine.create();
 	world = engine.world;
 
-	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:0.4, isStatic:true});
+	packageBody = Bodies.circle(width/2 , 200 , 25 , {restitution:0.4, isStatic:true});
 	World.add(world, packageBody);
 	
 
@@ -46,19 +46,19 @@ function setup() {
  	boxleftSprite=createSprite(boxPosition, boxY, 20,100);
  	boxleftSprite.shapeColor=color(255,0,0);
 
- 	boxLeftBody = Bodies.rectangle(boxPosition+20, boxY, 20,100 , {isStatic:true} );
+ 	boxLeftBody = Bodies.rectangle(boxPosition,boxY, 20,100 , {isStatic:true} );
  	World.add(world, boxLeftBody);
 
  	boxBase=createSprite(boxPosition+100, boxY+40, 200,20);
  	boxBase.shapeColor=color(255,0,0);
 
- 	boxBottomBody = Bodies.rectangle(boxPosition+100, boxY+45-20, 200,20 , {isStatic:true} );
+ 	boxBottomBody = Bodies.rectangle(boxPosition+100, boxY+40 ,200,20, {isStatic:true} );
  	World.add(world, boxBottomBody);
 
  	boxleftSprite=createSprite(boxPosition+200 , boxY, 20,100);
  	boxleftSprite.shapeColor=color(255,0,0);
 
- 	boxRightBody = Bodies.rectangle(boxPosition+200-20 , boxY, 20,100 , {isStatic:true} );
+ 	boxRightBody = Bodies.rectangle(boxPosition+200, boxY, 20,100 , {isStatic:true} );
  	World.add(world, boxRightBody);
 
 
@@ -76,12 +76,14 @@ function draw() {
 
   
   drawSprites();
-  
+  //ellipseMode(RADIUS)
+ // ellipse(packageBody.position.x,packageBody.position.y,25)
   
  
 }
 
 function keyPressed() {
+	if(packageBody.position.y<350){
   if (keyCode === LEFT_ARROW) {
 
     helicopterSprite.x=helicopterSprite.x-20;    
@@ -98,6 +100,7 @@ function keyPressed() {
     Matter.Body.setStatic(packageBody,false);
     
   }
+}
 }
 
 
